@@ -1,4 +1,4 @@
-"""Steamlink Launcher for OSMC"""
+"""Steamlink Launcher for Raspbian"""
 import os
 import xbmc
 import xbmcgui
@@ -58,13 +58,13 @@ if [ "$(which steamlink)" = "" ]; then
     sudo dpkg -i /tmp/steamlink.deb
     rm -f /tmp/steamlink.deb
 fi
-if [ -f "/home/osmc/.wakeup" ] 
-   then /usr/bin/wakeonlan "$(cat "/home/osmc/.wakeup")"
-   else sudo apt install wakeonlan -y; /usr/bin/wakeonlan "$(cat "/home/osmc/.wakeup")" 
+if [ -f "/home/media/.wakeup" ] 
+   then /usr/bin/wakeonlan "$(cat "/home/media/.wakeup")"
+   else sudo apt install wakeonlan -y; /usr/bin/wakeonlan "$(cat "/home/media/.wakeup")" 
 fi
 systemctl stop mediacenter
-if [ "$(systemctl is-active hyperion.service)" = "active" ]; then systemctl restart hyperion; fi
-sudo -u osmc steamlink
+#if [ "$(systemctl is-active hyperion.service)" = "active" ]; then systemctl restart hyperion; fi
+sudo -u media steamlink
 openvt -c 7 -s -f clear
 systemctl start mediacenter
 """)
